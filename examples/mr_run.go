@@ -37,11 +37,14 @@ import (
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	fmt.Println("Spawning ephemeral ipfs node")
+
+	// fmt.Println("Spawning ephemeral ipfs node")
 	// node, err := spawnEphemeral(ctx)
+
+	fmt.Println("Spawning default ipfs node")
 	node, err := spawnDefault(ctx)
 	if err != nil {
-		panic(fmt.Errorf("failed to spawn ephemeral node: %s", err))
+		panic(fmt.Errorf("failed to spawn node: %s", err))
 	}
 	err = mapreduce.RegisterProtocol(node)
 	if err != nil {
@@ -119,7 +122,7 @@ func createTempRepo(ctx context.Context) (string, error) {
 	// Create the repo with the config
 	err = fsrepo.Init(repoPath, cfg)
 	if err != nil {
-		return "", fmt.Errorf("failed to init ephemeral node: %s", err)
+		return "", fmt.Errorf("failed to init node: %s", err)
 	}
 
 	return repoPath, nil
