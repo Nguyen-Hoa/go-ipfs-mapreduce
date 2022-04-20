@@ -143,9 +143,13 @@ func spawnEphemeral(ctx context.Context) (*core.IpfsNode, error) {
 
 // Creates an IPFS node and returns its coreAPI
 func createNode(ctx context.Context, repoPath string) (*core.IpfsNode, error) {
+	fmt.Println("Creating node")
+
 	// Open the repo
 	repo, err := fsrepo.Open(repoPath)
 	if err != nil {
+		fmt.Println("failed to open repo at ", repoPath)
+		fmt.Println(err)
 		return nil, err
 	}
 
@@ -180,10 +184,12 @@ func spawnDefault(ctx context.Context) (*core.IpfsNode, error) {
 	defaultPath, err := config.PathRoot()
 	if err != nil {
 		// shouldn't be possible
+		fmt.Println("error:", err)
 		return nil, err
 	}
 
 	if err := setupPlugins(defaultPath); err != nil {
+		fmt.Println("error:", err)
 		return nil, err
 
 	}

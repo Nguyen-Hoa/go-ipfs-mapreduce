@@ -31,7 +31,7 @@ func AddFile(ctx context.Context, node *core.IpfsNode, filePath string) (cid.Cid
 		return cid.Cid{}, err
 	}
 	fileReader := files.NewReaderFile(file)
-	rootNode, err := adder.AddAllAndPin(fileReader)
+	rootNode, err := adder.AddAllAndPin(ctx, fileReader)
 	if err != nil {
 		log.Println("Unable to get Add and pin", err)
         return cid.Cid{}, err
