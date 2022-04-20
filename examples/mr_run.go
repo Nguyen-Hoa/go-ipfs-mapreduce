@@ -38,7 +38,8 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	fmt.Println("Spawning ephemeral ipfs node")
-	node, err := spawnEphemeral(ctx)
+	// node, err := spawnEphemeral(ctx)
+	node, err := spawnDefault(ctx)
 	if err != nil {
 		panic(fmt.Errorf("failed to spawn ephemeral node: %s", err))
 	}
